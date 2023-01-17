@@ -1,0 +1,170 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+/* Sorting section styling */
+.sorting-section {
+  width: 50%;
+  margin: auto;
+  padding: 100px;
+}
+
+.search {
+  border: #d6d3d1 1px solid;
+  border-radius: 5px;
+}
+
+/* styling for the section which has the list of all the lessons */
+.lessons-section {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #f1f5f9;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* styling related to individual lesson */
+.lesson {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 40px;
+  /* background-color: #fde68a; */
+  background-color: white;
+  border-radius: 20px;
+}
+
+/* styling of left side of a lesson */
+.lesson-left {
+  /* background-color: #e2e8f0; */
+}
+
+.lesson-image {
+  width: 150px;
+  height: auto;
+}
+
+.lesson-title {
+  color: #525252;
+  font-size: larger;
+}
+
+button {
+  border: none;
+}
+
+.purchase-btn {
+  background-color: #ef4444;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.disabled-purchase-btn {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: #d6d3d1;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-style: italic;
+}
+
+/* styling of the right side of the lesson */
+.lesson-right {
+  flex: 1;
+}
+
+.lesson-description {
+  color: #57534e;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+/* ------------------------------------CART / CHECKOUT PAGE STYLING---------------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+.order-container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+  border-radius: 10px;
+  margin-top: 100px;
+  color: #ef4444;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #d6d3d1;
+}
+
+.confirm-container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #f1f5f9;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+input,
+select {
+  border: none;
+  height: 40px;
+  width: 300px;
+  padding: 0 10px;
+  outline: none;
+}
+
+.confirm-btn {
+  height: 40px;
+  background-color: #ef4444;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.disabled-confirm-btn {
+  height: 40px;
+  background-color: #d6d3d1;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  letter-spacing: 2px;
+  cursor: not-allowed;
+  pointer-events: none;
+  font-style: italic;
+}
+
+.cancel-btn {
+  height: 40px;
+  background-color: #424242;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  letter-spacing: 2px;
+  cursor: pointer;
+}

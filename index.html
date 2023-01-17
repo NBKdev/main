@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./public/style.css">
+    <title>Work 2</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- lessons page -->
+        <section v-if="activePage === 'lessons'">
+            <!-- Sorting section -->
+            <section class="sorting-section">
+                <select v-model="sortBy">
+                    <option value="topic">Topic</option>
+                    <option value="location">Location</option>
+                    <option value="price">Price</option>
+                    <option value="space">Space</option>
+                </select>
+
+                <select v-model="sortOrder">
+                    <option value="asc">ASC</option>
+                    <option value="desc">DESC</option>
+                </select>
+
+                <input placeholder="Type topic name" class="search" v-model="searchTerm">
+            </section>
+
+            <!-- lessons section-->
+            <section class="lessons-section">
+                <!-- individual lesson item -->
+                <div class="lessons-list" v-if="sortedLessons.length">
+                    <article v-for="(lesson, index) in sortedLessons" :key="lesson.id" class="lesson">
+                        <div class="lesson-left">
+                            <img :src="`https://darius-project.herokuapp.com/public/course${index+1}.jpg`" class="lesson-image" />
+                            <h1 class="lesson-title">{{ lesson.topic }}</h1>
+                            <button :class="lesson.space === 0 ? 'disabled-purchase-btn' : 'purchase-btn'"
+                                @click="purchaseLesson(lesson)">Purchase Lesson</button>
+                        </div>
+                        <div class="lesson-right">
+                            <p class="lesson-description" v-html="lesson.description"></p>
+                            <p>
+                                <span class="fa fa-map-marker"></span>
+                                <span>{{ lesson.location }}</span>
+                            </p>
+                            <p>
+                                <span class="fa fa-money"></span>
+                                <span>{{ lesson.price }}</span>
+                            </p>
+                            <p>
+                                <span class="fa fa-users"></span>
+                                <span>{{ lesson.space }}</span>
+                            </p>
+                            <p v-if="lesson.space === 0">Out of stock more will come</p>
+                            <p v-else-if="lesson.space < 5">Only {{ lesson.space }} left!</p>
+                            <p v-else>Hurry buy your lessons now!</p>
+                        </div>
+                    </article>
+                </div>
+                <div v-else>No Lessons to show</div>
+            </section>
+        </section>
+
+        <!-- confirm page -->
+        <section v-else>
+            <!-- order container -->
+            <article class="order-container">
+                <h3>Please confirm your reservation for <u>{{ targetLesson.topic }}</u></h3>
+            </article>
+
+            <!-- confirm section -->
+            <article class="confirm-container">
+                <div class="input-group">
+                    <label for="name">Enter your name:</label>
+                    <input v-model="name" type="text" placeholder="John Doe.">
+                </div>
+                <div class="input-group">
+                    <label for="name">Enter your phone number:</label>
+                    <input v-model="phone" type="text" placeholder="123456789">
+                </div>
+
+                <button :class="canCheckout ? 'confirm-btn' : 'disabled-confirm-btn'"
+                    @click="confirm">Confirm</button>
+                <button class="cancel-btn" @click="togglePage">Cancel</button>
+            </article>
+        </section>
+    </div>
+    <!-- VUE app -->
+    <script src="./public/vue.js"></script>
+</body>
+
+</html>

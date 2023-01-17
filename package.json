@@ -1,0 +1,19 @@
+{
+    "name": "web-app-part-2",
+    "private": true,
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "mongodb": "^4.13.0",
+        "nodemon": "^2.0.20"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/avram-beni11/web-app-part-2"
+    },
+    "homepage": "https://github.com/avram-beni11/web-app-part-2#readme"
+}
