@@ -1,7 +1,7 @@
 const { MongoClient, ObjectId } = require("mongodb");
 // establish a connection with mongodb
 const uri =
-  "mongodb+srv://darius:<darius>@cluster0.hlvaagz.mongodb.net/test"; //uri for mongodb
+"mongodb+srv://darius:Darius2001@cluster0.hlvaagz.mongodb.net/?retryWrites=true&w=majority"; //uri for mongodb
 var client = new MongoClient(uri);
 
 async function connect() {
