@@ -102,7 +102,7 @@ let webstore = new Vue({
     },
     canCheckout: function () {
       let isNameCorrect = /^[a-zA-Z\s]*$/.test(this.name); // regex is used to check if name contains letters only
-      let isPhoneCorrect = /^[0-9]+$/.test(this.phone) && this.phone.length > 11; // regex is used to check if phone contains number only AND it has more than 11 digits
+      let isPhoneCorrect = /^[0-9]+$/.test(this.phone) && this.phone.length > 10; // regex is used to check if phone contains number only AND it has more than 11 digits
       return isNameCorrect && isPhoneCorrect;
     },
   },
