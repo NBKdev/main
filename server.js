@@ -20,7 +20,7 @@ async function createOrder(order) {
 	return await client.db("project").collection("orders").insertOne(order);
 }
 
-async function getLessons() {
+async function getLessons() { // retrieves data from mongodb via node.js which the client 
 	return client
     .db("project")
     .collection("lessons")
