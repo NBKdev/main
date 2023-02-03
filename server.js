@@ -20,24 +20,24 @@ async function createOrder(order) {
 	return await client.db("project").collection("orders").insertOne(order);
 }
 
-async function getLessons() { // retrieves data from mongodb via node.js which the client 
+async function getLessons() { // retrieves data from mongodb via node.js which the client that finds all the collections 
 	return client
     .db("project")
     .collection("lessons")
-    .find().toArray();
+    .find().toArray(); // the array method is used to convert the lesson information
 }
 
-async function updateLesson(id, space) {
-	return await client
+async function updateLesson(id, space) { // The mongodb allows the two function of the unique id of the lessons and the spaces to be updated.
+	return await client // this function weather the database lessons has been updated
     .db("project")
     .collection("lessons")
-    .updateOne({ _id: ObjectId(id) }, { $inc: { "space": -space } });
+    .updateOne({ _id: ObjectId(id) }, { $inc: { "space": -space } }); // This updates x amount of spaces when the method is filtered and updated from the mongodb collections
 }
 
-async function searchLesson(searchTerm) {
+async function searchLesson(searchTerm) { // search lesson function allows the mongodb used to search for the lessons matching in the database from the collections
 return client
   .db("project")
-  .collection("lessons")
+  .collection("lessons") 
   .find({
     topic: { $regex: searchTerm, $options: "is" },
   })
@@ -61,27 +61,27 @@ const logger = function (req, res, next) {
 app.use(logger);
 app.use("/public", express.static(__dirname + "/public"));  // inbuild "static" middleware to serve course images
 
-// Defining api routes
-app.get("/api/lesson", async (req, res) => {
+// Defining api routes // ASYNC allows the perform updates which can delay time to the thread exuction 
+app.get("/api/lesson", async (req, res) => { // the req respresents the http request for the express.js
   const result = await getLessons();
-  res.send(result);
+  res.send(result); // sends the http 
 });
 
-app.post("/api/order", async (req, res) => {
-	const result = await createOrder(req.body);
+app.post("/api/order", async (req, res) => { // Post allows the requests to api and order 
+	const result = await createOrder(req.body); // when creating order the function waits for the user to pass a response to the api then allows a response when it's available.
   res.send({
-		msg: `Reservation with id [${result.insertedId}] has been created successfully!`,
+		msg: `Reservation with id [${result.insertedId}] has been created successfully!`, // Once selected a lesson
 	});
 });
 
-app.put("/api/lesson/:id", async(req, res) => {
+app.put("/api/lesson/:id", async(req, res) => { // This allows the id of the lessons to be updated from this section which passes the lessons through the req/body/space  which the function sends a response to the user.
 	const result = await updateLesson(req.params.id, req.body.space);
 	res.send({
-    msg: `Spaces in the lesson [id: ${req.params.id}] updated after successful order`,
+    msg: `Spaces in the lesson [id: ${req.params.id}] updated after successful order`, // The route allows the collection to update the x amount of lesson
   });
 });
 
-app.get("/api/search/:searchTerm", async (req, res) => {
+app.get("/api/search/:searchTerm", async (req, res) => {  
   const result = await searchLesson(req.params.searchTerm);
   res.send(result);
 });
